@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+fuzzywuzzy
+python-Levenshtein
+jinja2
+scikit-learn
+joblib
+redis
+rapidfuzz
