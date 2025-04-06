@@ -20,6 +20,7 @@ def extract_keywords(text):
     """
     return text.split()
 
+
 def match_keywords(input_words, keyword_list, threshold=80):
     """
     Сопоставляет слова из входного списка с ключевыми словами по принципу нечёткого сравнения.
@@ -36,6 +37,17 @@ def match_keywords(input_words, keyword_list, threshold=80):
             if fuzz.partial_ratio(word, keyword) >= threshold:
                 matches.append(keyword)
     return list(set(matches))  # Убираем дубликаты
+
+
+def keyword_similarity_score(input_keywords: list, target_keywords: list) -> float:
+    if not input_keywords or not target_keywords:
+        return 0.0
+    input_set = set(k.lower() for k in input_keywords)
+    target_set = set(k.lower() for k in target_keywords)
+    intersection = input_set & target_set
+    union = input_set | target_set
+    return len(intersection) / len(union) if union else 0.0
+
 
 
 def tokenize_text(text: str) -> list:
